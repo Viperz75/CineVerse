@@ -1,2 +1,2 @@
 # CineVerse
-<img src="preview.png" style="width: 40%; float: left; margin-right: 20px;">
+<img src="preview.png" style="width: 100%; float: left; margin-right: 20px;">
