@@ -1,0 +1,112 @@
+{% extends 'bootstrap/base.html' %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{ super() }}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search2.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> {% endblock %} {% block title %}Search{% endblock %} {% block content %}
+
+<body>
+    <div class="content">
+        <h1 class="heading" style="font-family: 'Knewave', cursive;"><a href="{{ url_for('home') }}" style="color:black;"><span>List</span></a> View</h1>
+
+        <!-- ---------------------------------------------Search Bar-------------------------------------- -->
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="search" class="form-control" id="searchInput" placeholder="Search a Movie..." style="margin-left:380%; background: #f1f1f1; border:none; font-family:Knewave, cursive;"></div>
+        </div>
+        <center>
+            <div class="card">
+                <div class="container">
+                    <table id="table" class="table borderless" style="width: 70%">
+                        <thead>
+                            <tr style="font-size: 18px; font-weight: bold;">
+                                <td>Movie</td>
+                                <td>Rating</td>
+                                <td>Year</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for movie in movies %}
+                            <tr style="font-size: 16px;">
+                                <td>{{ movie.title }}</td>
+                                <td>{{ movie.rating }} ⭐</td>
+                                <td>{{ movie.year }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </center>
+        <script>
+            (function() {
+
+                if (!(window.history && history.pushState)) return;
+
+                var searchInput = document.querySelector("#searchInput"),
+                    rows = document.querySelectorAll("#table tbody tr"),
+                    timer;
+
+                function filterRows() {
+
+                    [].forEach.call(rows, function(row) {
+
+                        var cells = row.querySelectorAll("td"),
+                            containsText = false;
+
+                        [].forEach.call(cells, function(cell) {
+                            var text = cell.textContent.toLowerCase(),
+                                search = searchInput.value.toLowerCase();
+
+                            if (text.indexOf(search) != -1)
+                                containsText = true;
+                        });
+
+                        if (containsText)
+                            row.style.display = "";
+                        else
+                            row.style.display = "none";
+
+                    });
+
+                }
+
+                searchInput.onkeyup = function() {
+
+                    clearTimeout(timer);
+
+                    timer = setTimeout(function() {
+
+                        if (searchInput.value != "")
+                            window.history.pushState(searchInput.value, "", "#search=" + encodeURI(searchInput.value));
+
+                    }, 1000);
+
+                    filterRows();
+
+                }
+
+                window.onpopstate = function(e) {
+
+                    if (e.state !== null) {
+                        searchInput.value = e.state;
+
+                        filterRows();
+                    } else {
+                        var searchValue = window.location.hash.split("=").pop();
+
+                        searchInput.value = decodeURI(searchValue);
+
+                        filterRows();
+                    }
+
+                }
+
+            })();
+        </script>
+    </div>
+</body>
+{% endblock %}

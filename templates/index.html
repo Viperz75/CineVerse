@@ -1,0 +1,64 @@
+{% extends 'bootstrap/base.html' %} {% block styles %} {{ super() }}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}"> {% endblock %} {% block title %}CineVerse{% endblock %} {% block content %}
+
+<body style="background-image: url('static/images/homebackground.jpg');">
+    <input type="checkbox" id="active">
+    <label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
+    <div class="wrapper">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about_page') }}">About</a></li>
+            <li><a href="{{ url_for('search_movie') }}">List View</a></li>
+            <li><a href="{{ url_for('add_movie') }}">Add Movie</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h1 style="color: white; text-align: left; margin-left: 11%; margin-top: 5%;">Our Suggestions:</h1>
+
+            <div class="cards">
+                <img class="movies-suggestion" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
+                <img class="movies-suggestion" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aKCvdFFF5n80P2VdS7d8YBwbCjh.jpg">
+                <img class="movies-suggestion" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg">
+                <img class="movies-suggestion" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6h5OCqRnWH7Dcm4IeP4JypBdtuI.jpg">
+            </div>
+        </div><br><br>
+        
+        <div class="container" style="margin-top: 3%;">
+            <h1 style="text-align: left; color: white; margin-left: 55px;">Your movies:</h1>
+            {% for movie in movies %}
+            <div class="card row col-sm-6" style="margin-left:45px; padding-right:45px;">
+                <div class="front" style="background-image: url('{{movie.img_url}}');">
+                    <p class="large">{{ movie.ranking }}</p>
+                </div>
+                <div class="back">
+                    <div>
+                        <div class="title">{{movie.title}} <span class="release_date">({{movie.year}})</span></div>
+                        <div class="rating">
+                            <label>{{movie.rating}}</label>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <p class="review">"{{movie.review}}"</p>
+                        <p class="overview">{{movie.description}}</p>
+
+                        <a href="{{ url_for('rate_movie', id=movie.id) }}" class="button">Update</a>
+                        <a href="{{ url_for('delete', id=movie.id) }}" class="button delete-button">Delete</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock %}

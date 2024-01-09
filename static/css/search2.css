@@ -1,0 +1,228 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    transition: 0.3s;
+    width: 80%;
+    /* padding-left: 20px; */
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 80px;
+    border: 1px solid black;
+    opacity: 90%;
+    background-color: whitesmoke;
+    font-family: 'Knewave', cursive;
+}
+
+
+/* On mouse-over, add a deeper shadow */
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgb(0, 0, 128);
+}
+
+.container {
+    padding: 5%;
+}
+
+.heading {
+    margin-left: 1rem;
+    font-weight: 900;
+    font-size: 1.618rem;
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.1ch;
+    line-height: 1;
+    padding-bottom: 0.5em;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.heading:after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #1a9be6, #1a57e6);
+    bottom: 0;
+}
+
+.table-condensed {
+    font-size: 17px;
+    list-style-type: none;
+    font-family: 'Knewave', cursive;
+    border-top: none;
+}
+
+:root {
+    --bg: #e3e4e8;
+    --fg: #242424;
+    --input: #ffffff;
+    --primary: #255ff4;
+    --dur: 1s;
+    font-size: calc(8px + (14 - 8)*(60vw - 200px)/(900 - 200));
+}
+
+body,
+input {
+    color: var(--fg);
+    font: 1em/1.5 Hind, sans-serif;
+}
+
+body {
+    background-color: #EAEDFA;
+    display: flex;
+    height: 100vh;
+}
+
+form,
+input,
+.caret {
+    margin: auto;
+}
+
+form {
+    position: relative;
+    width: 100%;
+    max-width: 17em;
+    margin-right: 100px;
+}
+
+input,
+.caret {
+    display: block;
+    transition: all calc(var(--dur) * 0.5) linear;
+}
+
+input {
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.25em inset;
+    caret-color: var(--primary);
+    width: 2em;
+    height: 2em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input:focus,
+input:valid {
+    background: #EEEEEE;
+    border-radius: 0.25em;
+    box-shadow: none;
+    padding: 0.75em 1em;
+    transition-duration: calc(var(--dur) * 0.25);
+    transition-delay: calc(var(--dur) * 0.25);
+    width: 100%;
+    height: 3em;
+}
+
+input:focus {
+    animation: showCaret var(--dur) steps(1);
+    outline: transparent;
+}
+
+input:focus+.caret,
+input:valid+.caret {
+    animation: handleToCaret var(--dur) linear;
+    background: transparent;
+    width: 1px;
+    height: 1.5em;
+    transform: translate(0, -1em) rotate(-180deg) translate(7.5em, -0.25em);
+}
+
+input::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+label {
+    color: #e3e4e8;
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.caret {
+    background: currentColor;
+    border-radius: 0 0 0.125em 0.125em;
+    margin-bottom: -0.6em;
+    width: 0.25em;
+    height: 1em;
+    transform: translate(0, -1em) rotate(-45deg) translate(0, 0.875em);
+    transform-origin: 50% 0;
+}
+
+
+/* Dark mode */
+
+@media (prefers-color-scheme: dark) {
+     :root {
+        --bg: white;
+        --fg: #242424;
+        --input: #2e3138;
+        --primary: #5583f6;
+    }
+}
+
+
+/* Animations */
+
+@keyframes showCaret {
+    from {
+        caret-color: transparent;
+    }
+    to {
+        caret-color: var(--primary);
+    }
+}
+
+@keyframes handleToCaret {
+    from {
+        background: currentColor;
+        width: 0.25em;
+        height: 1em;
+        transform: translate(0, -1em) rotate(-45deg) translate(0, 0.875em);
+    }
+    25% {
+        background: currentColor;
+        width: 0.25em;
+        height: 1em;
+        transform: translate(0, -1em) rotate(-180deg) translate(0, 0.875em);
+    }
+    50%,
+    62.5% {
+        background: var(--primary);
+        width: 1px;
+        height: 1.5em;
+        transform: translate(0, -1em) rotate(-180deg) translate(7.5em, 2.5em);
+    }
+    75%,
+    99% {
+        background: var(--primary);
+        width: 1px;
+        height: 1.5em;
+        transform: translate(0, -1em) rotate(-180deg) translate(7.5em, -0.25em);
+    }
+    87.5% {
+        background: var(--primary);
+        width: 1px;
+        height: 1.5em;
+        transform: translate(0, -1em) rotate(-180deg) translate(7.5em, 0.125em);
+    }
+    to {
+        background: transparent;
+        width: 1px;
+        height: 1.5em;
+        transform: translate(0, -1em) rotate(-180deg) translate(7.5em, -0.25em);
+    }
+}

@@ -1,0 +1,35 @@
+{% extends 'bootstrap/base.html' %} {% block styles %} {{ super() }}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"> -->
+<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}"> {% endblock %} {% block title %}CineVerse{% endblock %} {% block content %}
+<!--<body style="background-image: linear-gradient(to bottom right, #4568dc , #b06ab3)">-->
+
+<body class="body" style="background-image: url('static/images/background.jpg');">
+    <div>
+        <a href="{{ url_for('home') }}"><img class="logo" src="{{ url_for('static', filename='images/mylogo.png') }}"></a>
+        <h1>About Us</h1>
+        <p>We are two brothers making a team of Web & Software Development. This is a Movie Watchlist site to keep track of what movies we saw. This site is all about our watched movies. We are trying to keep a log of movies that we watch. That's it. Nothing
+            fancy...
+        </p>
+        <br>
+        <p>Now go. Shoo... 🙄</p>
+        <br><br>
+        <p>What are you still doing here?</p>
+        <br>
+        <p style="color:yellow; font-size:17px; font-weight: bold;">Want to contact us? We don't know why you want that but have it your way. Our contact details are given below 😇</p>
+
+        <p>
+            <a href="https://www.facebook.com/niazmahmud.akash.7" class="fa-brands fa-facebook"></a>
+            <a href="https://twitter.com/Viperz75" class="fa-brands fa-x-twitter"></a>
+        </p>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,93 @@
+.body {
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo {
+    border-radius: 50%;
+    float: left;
+    width: 15%;
+    height: 15%;
+    margin-left: 80px;
+    margin-top: 40px;
+}
+
+h1 {
+    float: right;
+    margin-right: 63%;
+    margin-top: 4%;
+    color: white;
+    font-family: 'Knewave', cursive;
+}
+
+p {
+    float: right;
+    width: 30%;
+    margin-right: 44%;
+    margin-top: 2%;
+    color: white;
+    font-family: 'Knewave', cursive;
+    font-size: 16px;
+    text-align: justify;
+}
+
+
+/* Social Links Styles */
+
+.fa {
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    transition: transform .3s;
+}
+
+
+/* Add a hover effect if you want */
+
+.fa:hover {
+    transform: scale(1.2);
+    color: yellow;
+    text-decoration: none;
+}
+
+
+/* Set a specific color for each brand */
+
+
+/* Facebook */
+
+.fa-facebook {
+    /*background: #3B5998;*/
+    color: white;
+    padding-right: 30px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.fa-facebook:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.fa-facebook:focus{
+    text-decoration: none;
+    color: white;
+}
+
+/* Twitter */
+
+.fa-x-twitter {
+    /*background: #55ACEE;*/
+    color: white;
+}
+
+.fa-x-twitter:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.fa-x-twitter:focus{
+    text-decoration: none;
+    color: white;
+}
